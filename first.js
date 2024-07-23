@@ -41,28 +41,20 @@
 // N is an integer within the range [1…100,000];
 // each element of array V is an integer within the range [1…10,000];
 // string R is made only of the characters ‘A’ and/or ‘B’.
-
-function solution(R, V) {
-    let currentBalanceA = 0;
-    let currentBalanceB = 0;
-    let minInitialBalanceA = 0;
-    let minInitialBalanceB = 0;
-
 for (let i = 0; i < R.length; i++) {
     if (R[i] === 'A') {
-        currentBalanceA += V[i];
-        currentBalanceB -= V[i];
-        if (currentBalanceB < 0) {
-            minInitialBalanceB = Math.max(minInitialBalanceB, -currentBalanceB);
-        }
+        current_balance_B -= V[i];
+        current_balance_A += V[i];
     } else if (R[i] === 'B') {
-        currentBalanceB += V[i];
-        currentBalanceA -= V[i];
-        if (currentBalanceA < 0) {
-            minInitialBalanceA = Math.max(minInitialBalanceA, -currentBalanceA);
-        }
+        current_balance_A -= V[i];
+        current_balance_B += V[i];
     }
+
+min_balance_A = Math.min(min_balance_A, current_balance_A);
+min_balance_B = Math.min(min_balance_B, current_balance_B);
 }
 
-return [minInitialBalanceA, minInitialBalanceB];
-}
+const min_initial_balance_A = min_balance_A < 0 ? -min_balance_A : 0;
+const min_initial_balance_B = min_balance_B < 0 ? -min_balance_B : 0;
+
+return [min_initial_balance_A, min_initial_balance_B];
