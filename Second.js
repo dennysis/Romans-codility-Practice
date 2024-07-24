@@ -22,3 +22,47 @@
 
 // N is an integer within the range [1..100,000];
 // each element of array A is an integer within the range [1..100,000].
+
+
+
+function bubbleSort(arr) {
+  let n = arr.length;
+  let swapped;
+
+  do {
+    swapped = false;
+    for (let i = 0; i < n - 1; i++) {
+      if (arr[i] > arr[i + 1]) {
+        // Swap elements
+        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+        swapped = true;
+      }
+    }
+    // Decrease the range of comparison
+    n--;
+  } while (swapped);
+
+  return arr;
+}
+
+function solution(A) {
+  bubbleSort(A);
+  let count = 0;
+  let i = 0;
+
+  while (i < A.length) {
+    let maxGuests = A[i];
+    count++;
+    i += maxGuests;
+  }
+
+  return count;
+}
+
+
+
+console.log(solution([7, 3, 1, 1, 4, 5, 4, 9])); 
+console.log(solution([1, 1, 1, 1, 1])); 
+console.log(solution([2, 7, 2, 9, 8])); 
+console.log(solution([2, 1, 4])); 
+
