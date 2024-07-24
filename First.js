@@ -13,3 +13,46 @@
 // N is an integer within the range [1..200,000].
 
 
+function solution(N) {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    let result = '';
+
+
+    let fullSets = Math.floor(N / 26);
+    let remainder = N % 26;
+
+
+    for (let i = 0; i < fullSets; i++) {
+        result += alphabet;
+    }
+
+    result += alphabet.slice(0, remainder);
+
+
+    function shuffleString(str) {
+        let array = str.split('');
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array.join('');
+    }
+
+    return shuffleString(result);
+}
+
+console.log(solution(3));    // "fig", "pea", "nut", etc. (random 3-letter combinations)
+console.log(solution(5));    // "mango", "grape", "melon", etc. (random 5-letter combinations)
+console.log(solution(30));   // "aabbcc...oo" (random 30-letter combinations)
+
+
+
+
+
+
+
+
+
+
+
+
